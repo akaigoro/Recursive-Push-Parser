@@ -1,13 +1,10 @@
-package org.df4j.core.workflow.token;
+package org.df4j.pushparser.json;
 
 public class Token {
-    TokenType type;
+    public final TokenType type;
 
     public Token(TokenType type) {
         this.type = type;
-    }
-
-    public Token() {
     }
 
     @Override

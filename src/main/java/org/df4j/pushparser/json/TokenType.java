@@ -1,14 +1,15 @@
-package org.df4j.core.workflow.token;
+package org.df4j.pushparser.json;
 
 import java.util.HashMap;
 
 public enum TokenType {
-    leftBrace('{'),
-    rightBrace('}'),
-    leftBracket('['),
-    rightBracket(']'),
-    comma(','),
-    semicolon(':');
+    LeftBrace('{'),
+    RightBrace('}'),
+    LeftBracket('['),
+    RightBracket(']'),
+    Comma(','),
+    Semicolon(':'),
+    Value(' ');
 
     private final char c;
 
@@ -19,7 +20,9 @@ public enum TokenType {
     public static final HashMap<Character, TokenType> letterTypes = new HashMap<Character, TokenType>();
     static {
         for (TokenType type : TokenType.values()) {
-            letterTypes.put(type.c, type);
+            if (type != Value) {
+                letterTypes.put(type.c, type);
+            }
         }
     }
 }

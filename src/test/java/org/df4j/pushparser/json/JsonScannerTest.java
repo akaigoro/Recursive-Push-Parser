@@ -1,9 +1,6 @@
-package org.df4j.workflow;
+package org.df4j.pushparser.json;
 
-import org.df4j.core.workflow.IJsonParser;
-import org.df4j.core.workflow.JsonParser;
-import org.df4j.core.workflow.JsonScanner;
-import org.df4j.core.workflow.token.Token;
+import org.df4j.pushparser.core.TokenSink;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,14 +8,18 @@ import java.util.ArrayList;
 public class JsonScannerTest {
     ArrayList<Token> tokens  = new ArrayList<>();
 
-    IJsonParser parser = new IJsonParser() {
+    JsonScanner scanner = new JsonScanner(new TokenSink<Token>() {
 
         @Override
         public void write(Token t) {
             tokens.add(t);
         }
-    };
-    JsonScanner scanner = new JsonScanner(parser);
+
+        @Override
+        public void close() {
+
+        }
+    });
 
     private void toScanner(String s) {
         for (int k=0; k<s.length(); k++) {
